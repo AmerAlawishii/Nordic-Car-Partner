@@ -1,366 +1,1114 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sexdrega - Upptäck charmen i södra Västergötland</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600;700&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Startsida.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nordic Car Partner – Trygg bilaffär i Norden</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #122040;
+    --ice: #e8f0f7;
+    --steel: #c5d4e3;
+    --accent: #2a6dd9;
+    --accent-light: #4a8df0;
+    --gold: #c8a96e;
+    --white: #ffffff;
+    --text-muted: #8ea3bc;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--ice);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 5vw;
+    background: rgba(10, 22, 40, 0.85);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(197, 212, 227, 0.08);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .logo-mark {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 6px;
+    display: grid; place-items: center;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--steel);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #fff !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 6px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--accent-light) !important; color: #fff !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 9rem 5vw 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(42, 109, 217, 0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 10% 80%, rgba(200, 169, 110, 0.08) 0%, transparent 50%),
+      linear-gradient(160deg, var(--navy) 0%, #0d1f3a 100%);
+  }
+
+  .hero-grid-lines {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(197,212,227,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(197,212,227,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 680px;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(42, 109, 217, 0.15);
+    border: 1px solid rgba(42, 109, 217, 0.3);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent-light);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--accent-light);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--steel);
+    max-width: 520px;
+    margin-bottom: 2.8rem;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--steel);
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid rgba(197,212,227,0.2);
+    transition: border-color 0.2s, color 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-outline:hover { border-color: var(--steel); color: var(--white); }
+
+  /* STATS BAR */
+  .stats-bar {
+    position: absolute; bottom: 3rem; left: 5vw; right: 5vw; z-index: 1;
+    display: flex; gap: 3rem;
+    padding: 1.8rem 2.5rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(197,212,227,0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    max-width: 700px;
+  }
+
+  .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: rgba(197,212,227,0.12);
+    align-self: stretch;
+  }
+
+  /* HERO CAR IMAGE placeholder */
+  .hero-visual {
+    position: absolute;
+    right: 0; top: 50%; transform: translateY(-50%);
+    width: 55vw; max-width: 800px;
+    z-index: 0;
+    opacity: 0.12;
+    animation: fadeRight 1.2s ease both 0.3s;
+  }
+
+  @keyframes fadeRight {
+    from { opacity: 0; transform: translateY(-50%) translateX(60px); }
+    to { opacity: 0.12; transform: translateY(-50%) translateX(0); }
+  }
+
+  /* CAR SVG ILLUSTRATION */
+  .car-illustration {
+    position: absolute;
+    right: 3vw; top: 50%; transform: translateY(-55%);
+    width: min(50vw, 620px);
+    z-index: 1;
+    opacity: 0.9;
+    animation: floatCar 1.2s ease both 0.3s;
+    filter: drop-shadow(0 30px 80px rgba(42,109,217,0.25));
+  }
+
+  @keyframes floatCar {
+    from { opacity: 0; transform: translateY(-45%) translateX(80px); }
+    to { opacity: 0.9; transform: translateY(-55%) translateX(0); }
+  }
+
+  /* PROCESS SECTION */
+  .section {
+    padding: 7rem 5vw;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent-light);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-lead {
+    color: var(--steel);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 560px;
+    font-weight: 300;
+    margin-bottom: 4rem;
+  }
+
+  /* HOW IT WORKS */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5px;
+    background: rgba(197,212,227,0.08);
+    border: 1px solid rgba(197,212,227,0.08);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .process-step {
+    background: var(--navy);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: background 0.25s;
+  }
+
+  .process-step:hover { background: #0f1e36; }
+
+  .step-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: rgba(42,109,217,0.15);
+    line-height: 1;
+    margin-bottom: 1.2rem;
+  }
+
+  .step-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.7rem;
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* WHY US */
+  .why-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .why-features {
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+
+  .feature-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(197,212,227,0.07);
+  }
+
+  .feature-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .feature-icon-wrap {
+    width: 44px; height: 44px;
+    background: rgba(42,109,217,0.12);
+    border: 1px solid rgba(42,109,217,0.25);
+    border-radius: 10px;
+    display: grid; place-items: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .feature-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .feature-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .why-visual {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(197,212,227,0.1);
+    border-radius: 16px;
+    padding: 2.5rem;
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+
+  .testimonial-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(197,212,227,0.08);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+
+  .testimonial-stars {
+    color: var(--gold);
+    font-size: 0.85rem;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  .testimonial-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--steel);
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  .testimonial-author {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .author-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .author-location {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* SERVICES */
+  .services-section {
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid rgba(197,212,227,0.07);
+    border-bottom: 1px solid rgba(197,212,227,0.07);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(197,212,227,0.08);
+    border-radius: 14px;
+    padding: 2.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(42,109,217,0.3);
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .service-card:hover::before { opacity: 1; }
+
+  .service-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--white);
+    margin-bottom: 0.9rem;
+  }
+
+  .service-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-link {
+    font-size: 0.85rem;
+    color: var(--accent-light);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-weight: 500;
+    transition: gap 0.2s;
+  }
+
+  .service-link:hover { gap: 0.7rem; }
+
+  /* CTA */
+  .cta-section {
+    padding: 7rem 5vw;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(42,109,217,0.15) 0%, transparent 70%);
+  }
+
+  .cta-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+
+  .cta-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.08;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-sub {
+    color: var(--steel);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+
+  .contact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    background: rgba(42,109,217,0.1);
+    border: 1px solid rgba(42,109,217,0.2);
+    border-radius: 8px;
+    display: grid; place-items: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-value {
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  /* FORM */
+  .contact-form {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(197,212,227,0.1);
+    border-radius: 16px;
+    padding: 2.5rem;
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
+
+  .form-label {
+    font-size: 0.8rem;
+    color: var(--steel);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(197,212,227,0.12);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(197,212,227,0.3); }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: rgba(42,109,217,0.5);
+  }
+
+  .form-select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238ea3bc' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  .form-select option { background: var(--navy-mid); }
+
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(197,212,227,0.07);
+    padding: 3rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-copy {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .footer-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--steel); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-up {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .animate-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .why-layout, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-content { max-width: 100%; }
+    .car-illustration { display: none; }
+    .stats-bar { position: static; margin-top: 3rem; flex-wrap: wrap; gap: 1.5rem; max-width: 100%; }
+    .hero { padding-bottom: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; justify-content: center; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">Sexdrega</div>
-        <ul class="nav-links">
-            <li><a href="#om">Om Sexdrega</a></li>
-            <li><a href="#aktiviteter">Aktiviteter</a></li>
-            <li><a href="#info">Lokal Info</a></li>
-            <li><a href="#evenemang">Evenemang</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
-        </ul>
-        <button class="mobile-menu-btn">☰</button>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Sexdrega</h1>
-            <p class="hero-subtitle">En pärla i södra Västergötland</p>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">1250</span>
-                    <span class="stat-label">Invånare</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">Kind</span>
-                    <span class="stat-label">Region</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">1810</span>
-                    <span class="stat-label">Kyrkan uppförd</span>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span class="logo-mark">N</span>
+    Nordic Car Partner
+  </a>
+  <ul class="nav-links">
+    <li><a href="#process">Hur det fungerar</a></li>
+    <li><a href="#tjanster">Tjänster</a></li>
+    <li><a href="#varfor">Varför oss</a></li>
+    <li><a href="#kontakt" class="nav-cta">Kom igång</a></li>
+  </ul>
+</nav>
 
-    <!-- About Section -->
-    <section id="om">
-        <div class="section-header">
-            <div class="section-tag">Om Sexdrega</div>
-            <h2>Välkommen till vår by</h2>
-            <p class="section-description">
-                En charmig tätort i Svenljunga kommun där historia möter modern livskvalitet.
-            </p>
-        </div>
-        <div class="about-content">
-            <div class="about-text">
-                <p>
-                    Sexdrega är en mysig tätort belägen i Svenljunga kommun i Västra Götalands län. 
-                    Med sina cirka 1250 invånare erbjuder vi en perfekt balans mellan lugn landsbygd 
-                    och närhet till service och kommunikationer.
-                </p>
-                <p>
-                    Vår by ligger i det historiska landskapet Kind, som en gång utgjorde gränsen mot 
-                    Danmark. Detta spännande kulturarv präglar fortfarande området med fornlämningar, 
-                    historiska kyrkobyggnader och vackra naturmiljöer.
-                </p>
-                <p>
-                    Här finns Sexdrega skola med över 100 elever, lokal fotbollsklubb FC Lockryd, 
-                    och en stark gemenskap som värnar om både tradition och framtid. Vi är stolta över 
-                    vår levande bygd där alla känner alla.
-                </p>
-            </div>
-            <div class="about-image">            <img src="sexdregakyrka.jpg" alt="Sexdrega Kyrka">
-            </div>
-                            <p>Bilden av:  <a href="https://www.facebook.com/csundvall?locale=sv_SE">Lars Christer Sundvall</a> </p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
 
-        </div>
-    </section>
+  <!-- Car SVG -->
+  <svg class="car-illustration" viewBox="0 0 620 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Car body shadow -->
+    <ellipse cx="310" cy="265" rx="240" ry="15" fill="rgba(42,109,217,0.12)"/>
+    <!-- Car body -->
+    <path d="M80 190 L80 145 Q82 130 100 115 L180 75 Q200 65 240 62 L380 62 Q420 62 445 75 L520 115 Q538 130 540 145 L540 190 Q540 200 530 205 L90 205 Q80 200 80 190Z" fill="#122040" stroke="rgba(197,212,227,0.2)" stroke-width="1.5"/>
+    <!-- Roof -->
+    <path d="M185 110 L195 75 Q205 66 238 63 L382 63 Q415 66 425 75 L435 110Z" fill="#0f1a30" stroke="rgba(197,212,227,0.1)" stroke-width="1"/>
+    <!-- Windows -->
+    <path d="M200 108 L207 76 Q214 68 237 66 L310 66 L310 108Z" fill="rgba(42,109,217,0.35)" stroke="rgba(74,141,240,0.3)" stroke-width="1"/>
+    <path d="M316 66 L383 66 Q406 68 413 76 L420 108 L316 108Z" fill="rgba(42,109,217,0.35)" stroke="rgba(74,141,240,0.3)" stroke-width="1"/>
+    <!-- Window divider -->
+    <line x1="313" y1="66" x2="313" y2="108" stroke="rgba(197,212,227,0.2)" stroke-width="2"/>
+    <!-- Body detail lines -->
+    <path d="M100 165 L520 165" stroke="rgba(197,212,227,0.08)" stroke-width="1"/>
+    <!-- Door lines -->
+    <line x1="250" y1="115" x2="245" y2="200" stroke="rgba(197,212,227,0.1)" stroke-width="1.5"/>
+    <line x1="370" y1="115" x2="375" y2="200" stroke="rgba(197,212,227,0.1)" stroke-width="1.5"/>
+    <!-- Front lights -->
+    <path d="M517 140 L545 148 L543 160 L515 155Z" fill="rgba(200,169,110,0.6)" stroke="rgba(200,169,110,0.3)" stroke-width="1"/>
+    <ellipse cx="543" cy="154" rx="4" ry="6" fill="rgba(200,169,110,0.8)"/>
+    <!-- Rear lights -->
+    <path d="M83 140 L55 148 L57 160 L85 155Z" fill="rgba(200,80,80,0.5)" stroke="rgba(220,80,80,0.3)" stroke-width="1"/>
+    <!-- Front bumper -->
+    <path d="M520 185 Q560 188 565 200 L545 203 Q530 198 520 198Z" fill="#0d1a2e" stroke="rgba(197,212,227,0.1)" stroke-width="1"/>
+    <!-- Rear bumper -->
+    <path d="M100 185 Q60 188 55 200 L75 203 Q90 198 100 198Z" fill="#0d1a2e" stroke="rgba(197,212,227,0.1)" stroke-width="1"/>
+    <!-- Wheels -->
+    <circle cx="175" cy="210" r="38" fill="#0a1020" stroke="rgba(197,212,227,0.15)" stroke-width="2"/>
+    <circle cx="175" cy="210" r="26" fill="#0f1828" stroke="rgba(42,109,217,0.3)" stroke-width="1.5"/>
+    <circle cx="175" cy="210" r="8" fill="rgba(42,109,217,0.5)"/>
+    <!-- Wheel spokes left -->
+    <line x1="175" y1="184" x2="175" y2="193" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="175" y1="227" x2="175" y2="236" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="149" y1="210" x2="158" y2="210" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="192" y1="210" x2="201" y2="210" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="157" y1="192" x2="163" y2="198" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="187" y1="222" x2="193" y2="228" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="157" y1="228" x2="163" y2="222" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="187" y1="198" x2="193" y2="192" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
 
-    <!-- Activities Section -->
-    <section id="aktiviteter">
-        <div class="section-header">
-            <div class="section-tag">Aktiviteter</div>
-            <h2>Upplev naturen & kulturen</h2>
-            <p class="section-description">
-                Från vandringar i skog till bad i sjöar – här finns något för alla årstider.
-            </p>
-        </div>
-        <div class="activities-grid">
-            <div class="activity-card">
-                <span class="activity-icon">🏊</span>
-                <h3>Hagalundssjöns Badplats</h3>
-                <p>
-                    Bara söder om Sexdrega ligger Hagalundssjöns härliga badplats. Perfect för 
-                    sommarens svalka och familjeutflykter med bryggor och grillplats.
-                </p>
-            </div>
-            <div class="activity-card">
-                <span class="activity-icon">🥾</span>
-                <h3>Vandringar i Kind</h3>
-                <p>
-                    Utforska märkta vandringsleder genom skogslandskap, förbi sjöar och fornlämningar. 
-                    Roasjö-området erbjuder fyra olika leder med varierande längd och svårighetsgrad.
-                </p>
-            </div>
-            <div class="activity-card">
-                <span class="activity-icon">⛪</span>
-                <h3>Sexdrega Kyrka</h3>
-                <p>
-                    Vår vackra kyrka uppförd 1810 är ett kulturhistoriskt monument värt att besöka. 
-                    Upplev den välbevarade arkitekturen och den fridfulla atmosfären.
-                </p>
-            </div>
-            <div class="activity-card">
-                <span class="activity-icon">🚴</span>
-                <h3>Sjuhäradrundan</h3>
-                <p>
-                    Cykla på den gamla järnvägsbanken genom vackra Sjuhärad-området. Passar perfekt 
-                    för dagsutflykter med familjen eller längre cykelturer.
-                </p>
-            </div>
-            <div class="activity-card">
-                <span class="activity-icon">🎣</span>
-                <h3>Fiske i lokala sjöar</h3>
-                <p>
-                    Området är rikt på fiskevatten. Hagalundssjön och andra närliggande sjöar 
-                    erbjuder goda möjligheter för sportfiske året om.
-                </p>
-            </div>
-            <div class="activity-card">
-                <span class="activity-icon">⚽</span>
-                <h3>FC Lockryd</h3>
-                <p>
-                    Vår lokala fotbollsklubb där unga och gamla samlas. Följ med på match eller 
-                    bli medlem – alla är välkomna att vara med!
-                </p>
-            </div>
-            <div class="activity-card">
-                <span class="activity-icon">💪</span>
-                <h3>Motionsfabriken</h3>
-                <p>
-                    Håll dig i form på vårt lokala gym. Modern utrustning och välkomnande atmosfär 
-                    för alla träningsnivåer – från nybörjare till erfarna.
-                </p>
-            </div>
-        </div>
-    </section>
+    <circle cx="445" cy="210" r="38" fill="#0a1020" stroke="rgba(197,212,227,0.15)" stroke-width="2"/>
+    <circle cx="445" cy="210" r="26" fill="#0f1828" stroke="rgba(42,109,217,0.3)" stroke-width="1.5"/>
+    <circle cx="445" cy="210" r="8" fill="rgba(42,109,217,0.5)"/>
+    <!-- Wheel spokes right -->
+    <line x1="445" y1="184" x2="445" y2="193" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="445" y1="227" x2="445" y2="236" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="419" y1="210" x2="428" y2="210" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="462" y1="210" x2="471" y2="210" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="427" y1="192" x2="433" y2="198" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="457" y1="222" x2="463" y2="228" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="427" y1="228" x2="433" y2="222" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <line x1="457" y1="198" x2="463" y2="192" stroke="rgba(197,212,227,0.4)" stroke-width="2"/>
+    <!-- Roof rack detail -->
+    <line x1="220" y1="62" x2="400" y2="62" stroke="rgba(197,212,227,0.12)" stroke-width="1"/>
+    <!-- Logo on car -->
+    <text x="295" y="170" font-family="sans-serif" font-size="10" fill="rgba(197,212,227,0.15)" text-anchor="middle" font-weight="600">NORDIC CAR PARTNER</text>
+  </svg>
 
-    <!-- Local Info Section -->
-    <section id="info">
-        <div class="section-header">
-            <div class="section-tag">Lokal Information</div>
-            <h2>Service & Företag</h2>
-            <p class="section-description">
-                Allt du behöver för vardagen finns nära till hands i Sexdrega och närområdet.
-            </p>
+  <div class="hero-content">
+    <div class="hero-badge">Trygg bilförmedling i Norden</div>
+    <h1>Din <em>säkra</em> partner i varje bilaffär</h1>
+    <p class="hero-sub">Vi hanterar hela processen – från värdering och dokumentation till kontakt mellan köpare och säljare. Du slipper osäkerheten och vi ser till att affären går rätt till.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Kom igång gratis →</a>
+      <a href="#process" class="btn-outline">Se hur det fungerar</a>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">500+</span>
+      <span class="stat-label">Genomförda affärer</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">4.9★</span>
+      <span class="stat-label">Kundbetyg</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Trygg dokumentation</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="process">
+  <div class="animate-up">
+    <span class="section-tag">Processen</span>
+    <h2 class="section-title">Enkelt från start till mål</h2>
+    <p class="section-lead">Fyra tydliga steg – vi guidar dig hela vägen och du behöver aldrig oroa dig för detaljer eller otäcka överraskningar.</p>
+  </div>
+
+  <div class="process-grid animate-up">
+    <div class="process-step">
+      <div class="step-number">01</div>
+      <div class="step-icon">📋</div>
+      <div class="step-title">Berätta om din bil</div>
+      <p class="step-desc">Fyll i ett enkelt formulär om bilen du vill sälja eller berätta vad du söker. Vi tar det därifrån.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">02</div>
+      <div class="step-icon">🔍</div>
+      <div class="step-title">Vi värderar & marknadsför</div>
+      <p class="step-desc">Våra experter sätter rätt pris baserat på marknadsdata och marknadsför bilen professionellt mot kvalificerade köpare.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">03</div>
+      <div class="step-icon">🤝</div>
+      <div class="step-title">Säker matchning</div>
+      <p class="step-desc">Vi hanterar all kommunikation, verifierar identiteter och ser till att visningar och förhandlingar sker tryggt och smidigt.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">04</div>
+      <div class="step-icon">✅</div>
+      <div class="step-title">Affären klar</div>
+      <p class="step-desc">Vi ordnar all dokumentation, ägarbytet och betalningshanteringen. Inga konstigheter – bara en klar affär.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services-section" id="tjanster">
+  <div class="animate-up">
+    <span class="section-tag">Tjänster</span>
+    <h2 class="section-title">Vad vi erbjuder</h2>
+    <p class="section-lead">Oavsett om du säljer, köper eller behöver hjälp med dokumentation – vi har rätt lösning för dig.</p>
+  </div>
+
+  <div class="services-grid animate-up">
+    <div class="service-card">
+      <div class="service-label">Sälja bil</div>
+      <div class="service-title">Sälj utan stress</div>
+      <p class="service-desc">Vi tar hand om allt – marknadsföring, förfrågningar, visningar och avtal. Du sätter priset, vi sköter resten och ser till att du får betalt tryggt.</p>
+      <a href="#kontakt" class="service-link">Starta försäljning →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-label">Köpa bil</div>
+      <div class="service-title">Hitta rätt bil</div>
+      <p class="service-desc">Berätta vad du söker så matchar vi dig med verifierade säljare. Vi kontrollerar bilens skick och historia så att du kan köpa med trygghet.</p>
+      <a href="#kontakt" class="service-link">Berätta vad du söker →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-label">Dokumentation</div>
+      <div class="service-title">Allt på papper</div>
+      <p class="service-desc">Köpeavtal, ägarbyten och besiktningsstöd – vi ser till att allt är juridiskt korrekt och att ingen part riskerar att hamna i kläm.</p>
+      <a href="#kontakt" class="service-link">Läs mer →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="varfor">
+  <div class="why-layout animate-up">
+    <div>
+      <span class="section-tag">Varför Nordic Car Partner</span>
+      <h2 class="section-title">Trygghet är vår kärnprodukt</h2>
+      <p class="section-lead">Bilaffärer kan kännas osäkra och krångliga. Vi gör dem enkla, transparenta och professionella.</p>
+
+      <div class="why-features">
+        <div class="feature-item">
+          <div class="feature-icon-wrap">🛡️</div>
+          <div>
+            <div class="feature-title">Verifierade parter</div>
+            <p class="feature-desc">Alla köpare och säljare verifieras innan affären inleds. Inga anonyma affärer, inga obehagliga överraskningar.</p>
+          </div>
         </div>
-        <div class="info-grid">
-            <div class="info-card">
-                <h3>Skola & Barnomsorg</h3>
-                <ul>
-                    <li>Sexdrega skola (F-6)</li>
-                    <li>Över 100 elever i moderna lokaler</li>
-                    <li>Fritidsverksamhet efter skoltid</li>
-                    <li>Fortsatt skolgång på Mogaskolan i Svenljunga (årskurs 7-9)</li>
-                    <li>Elevhälsoteam med kurator och skolsköterska</li>
-                </ul>
-            </div>
-            <div class="info-card">
-                <h3>Service & Närhet</h3>
-                <ul>
-                    <li>MatÖppet - Lokal livsmedelsbutik i Sexdrega</li>
-                    <li>Sexdrega Pizzeria - Restaurang & pizzeria</li>
-                    <li>9 km till Svenljunga centrum</li>
-                    <li>Postombud och basservice</li>
-                    <li>Busförbindelser till Svenljunga och Borås</li>
-                </ul>
-            </div>
-            <div class="info-card">
-                <h3>Boende & Fastigheter</h3>
-                <ul>
-                    <li>Attraktiva villatomter med naturnära läge</li>
-                    <li>Goda kommunikationer</li>
-                    <li>Prisvärt boende jämfört med större städer</li>
-                    <li>Möjlighet till lantbruks- och skogsmarker</li>
-                    <li>Aktiv bostadsmarknad</li>
-                </ul>
-            </div>
-            <div class="info-card">
-                <h3>Lokal Handel</h3>
-                <ul>
-                    <li>MatÖppet - Din lokala livsmedelsbutik</li>
-                    <li>Sexdrega Pizzeria - Gott och hemlagat</li>
-                    <li>Motionsfabriken - Lokalt gym</li>
-                    <li>Färskvaror och dagligvaror</li>
-                    <li>Postombud och paketservice</li>
-                </ul>
-            </div>
-            <div class="info-card">
-                <h3>Föreningsliv & Kultur</h3>
-                <ul>
-                    <li>FC Lockryd Fotbollsklubb</li>
-                    <li>Roasjö Bygdegård med aktiviteter</li>
-                    <li>Kyrkoverksamhet och högtider</li>
-                    <li>Lokala traditioner och evenemang</li>
-                    <li>Studieförbund och mötesplatser</li>
-                </ul>
-            </div>
+        <div class="feature-item">
+          <div class="feature-icon-wrap">💰</div>
+          <div>
+            <div class="feature-title">Rättvist pris alltid</div>
+            <p class="feature-desc">Vi baserar prissättningen på aktuell marknadsdata så att du som säljare får rätt betalt och du som köpare inte betalar för mycket.</p>
+          </div>
         </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="evenemang">
-        <div class="section-header">
-            <div class="section-tag">Evenemang</div>
-            <h2>Vad händer i byn?</h2>
-            <p class="section-description">
-                Håll utkik efter kommande lokala evenemang, aktiviteter och sammankomster. Nedan ser du exempel på typiska händelser under året.
-            </p>
+        <div class="feature-item">
+          <div class="feature-icon-wrap">📄</div>
+          <div>
+            <div class="feature-title">Juridiskt korrekt</div>
+            <p class="feature-desc">Vi hanterar köpeavtal och ägarbyten enligt gällande regler. Du skyddas från juridiska fallgropar som är vanliga i privata bilaffärer.</p>
+          </div>
         </div>
-        <div class="events-container">
-            <div class="event-item">
-                <div class="event-date">
-                    <span class="day">--</span>
-                    <span class="month">Vår</span>
-                </div>
-                <div class="event-details">
-                    <h4>Vårstädning i bygden</h4>
-                    <p>Gemensam städdag där vi fixar och piffar upp vår fina by inför våren. Samling vid bygdegården.</p>
-                </div>
-            </div>
-            <div class="event-item">
-                <div class="event-date">
-                    <span class="day">--</span>
-                    <span class="month">Påsk</span>
-                </div>
-                <div class="event-details">
-                    <h4>Påskmarknad på Roasjö Bygdegård</h4>
-                    <p>Traditionell påskmarknad med lokala hantverkare, bakverk och underhållning för hela familjen.</p>
-                </div>
-            </div>
-            <div class="event-item">
-                <div class="event-date">
-                    <span class="day">--</span>
-                    <span class="month">Vår</span>
-                </div>
-                <div class="event-details">
-                    <h4>Majbrasa & Traditionell Dans</h4>
-                    <p>Fira vårens ankomst med majbrasa, dans kring majstången och gemensam grillfest vid Hagalundssjön.</p>
-                </div>
-            </div>
-            <div class="event-item">
-                <div class="event-date">
-                    <span class="day">--</span>
-                    <span class="month">Sommar</span>
-                </div>
-                <div class="event-details">
-                    <h4>FC Lockryd Fotbollsmatcher</h4>
-                    <p>Kom och heja på våra lokala fotbollshjältar under säsongen. Korv och fika finns att köpa.</p>
-                </div>
-            </div>
+        <div class="feature-item">
+          <div class="feature-icon-wrap">💬</div>
+          <div>
+            <div class="feature-title">Tydlig kommunikation</div>
+            <p class="feature-desc">Du får alltid veta vad som händer i din affär. Inga dolda avgifter, inga oklara besked – bara rak och ärlig kommunikation.</p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="kontakt">
-        <div class="section-header">
-            <div class="section-tag">Kontakt</div>
-            <h2>Ta kontakt med oss</h2>
-            <p class="section-description">
-                Har du frågor om att bo, besöka eller etablera dig i Sexdrega? Hör av dig!
-            </p>
+    <div class="why-visual">
+      <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:0.9rem;color:var(--text-muted);margin-bottom:0.5rem;">Vad våra kunder säger</div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Sålde min BMW på under två veckor. De skötte allt från foton och annons till köpeavtalet. Jag behövde knappt göra något alls!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#2a6dd9;">MK</div>
+          <div>
+            <div class="author-name">Marcus K.</div>
+            <div class="author-location">Stockholm</div>
+          </div>
         </div>
-        <div class="info-grid">
-            <div class="info-card">
-                <h3>Sexdrega Skola</h3>
-                <ul>
-                    <li>Roasjövägen 5 A, 512 77 Sexdrega</li>
-                    <li>Telefon: 0325-185 22</li>
-                </ul>
-            </div>
-            <div class="info-card">
-                <h3>Svenljunga Kommun</h3>
-                <ul>
-                    <li>Grönsaksvägen 1, 512 80 Svenljunga</li>
-                    <li>Telefon: 0325-180 00</li>
-                    <li>Webb: www.svenljunga.se</li>
-                </ul>
-            </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Köpte via Nordic Car Partner och kände mig trygg hela vägen. De hade kollat bilen ordentligt och pappren var perfekt ordnade."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#c8a96e;color:#0a1628;">AL</div>
+          <div>
+            <div class="author-name">Anna L.</div>
+            <div class="author-location">Göteborg</div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#om">Om Sexdrega</a>
-                <a href="#aktiviteter">Aktiviteter</a>
-                <a href="#info">Lokal Info</a>
-                <a href="#evenemang">Evenemang</a>
-                <a href="#kontakt">Kontakt</a>
-                <a href="https://www.svenljunga.se" target="_blank">Svenljunga Kommun</a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Sexdrega, Skapad av Amer Alawishi</p>
-                <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.7;">
-                    Besök oss och upplev den västsvenska landsbygdens charm.
-                </p>
-            </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Professionellt från första kontakten. De hittade en seriös köpare och skötte hela processen. Rekommenderas varmt!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#1a3a6a;">EH</div>
+          <div>
+            <div class="author-name">Erik H.</div>
+            <div class="author-location">Malmö</div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-content animate-up">
+    <span class="section-tag">Redo att börja?</span>
+    <h2 class="cta-title">Din nästa bilaffär – trygg och enkel</h2>
+    <p class="cta-sub">Kontakta oss idag och berätta vad du behöver hjälp med. Första konsultationen är alltid kostnadsfri.</p>
+    <a href="#kontakt" class="btn-primary" style="font-size:1.05rem;padding:1rem 2.5rem;display:inline-flex;">Kontakta oss nu →</a>
+  </div>
+</section>
 
-        // Add scroll effect to navigation
-        let lastScroll = 0;
-        const nav = document.querySelector('nav');
-        
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                nav.style.boxShadow = 'none';
-            }
-            
-            lastScroll = currentScroll;
-        });
+<!-- CONTACT -->
+<section class="section" id="kontakt" style="padding-top:4rem;">
+  <div class="animate-up">
+    <span class="section-tag">Kontakt</span>
+    <h2 class="section-title">Låt oss prata</h2>
+    <p class="section-lead">Berätta om din situation så hör vi av oss inom 24 timmar med ett skräddarsytt förslag.</p>
+  </div>
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+  <div class="contact-grid animate-up">
+    <div class="contact-info">
+      <div style="font-size:0.9rem;color:var(--steel);line-height:1.7;font-weight:300;">
+        Oavsett om du vill sälja din bil, letar efter en specifik modell eller har frågor om hur vi arbetar – tveka inte att höra av dig.
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">E-post</div>
+          <div class="contact-value">info@nordiccarpartner.se</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Telefon</div>
+          <div class="contact-value">010-123 45 67</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-label">Öppettider</div>
+          <div class="contact-value">Mån–Fre 08–18, Lör 10–15</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Område</div>
+          <div class="contact-value">Verksamma i hela Norden</div>
+        </div>
+      </div>
+    </div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+    <div class="contact-form">
+      <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:1.1rem;color:var(--white);margin-bottom:0.5rem;">Skicka ett meddelande</div>
 
-        // Observe acti
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Förnamn</label>
+          <input type="text" class="form-input" placeholder="Anna">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Efternamn</label>
+          <input type="text" class="form-input" placeholder="Lindgren">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">E-postadress</label>
+        <input type="email" class="form-input" placeholder="anna@example.se">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Telefonnummer</label>
+        <input type="tel" class="form-input" placeholder="070-123 45 67">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Vad kan vi hjälpa dig med?</label>
+        <select class="form-select">
+          <option value="">Välj ett alternativ</option>
+          <option>Sälja min bil</option>
+          <option>Köpa en bil</option>
+          <option>Hjälp med dokumentation</option>
+          <option>Annat</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Berätta mer</label>
+        <textarea class="form-textarea" placeholder="Berätta kort om din situation, bilmodell, budget eller vad du söker..."></textarea>
+      </div>
+
+      <button class="btn-primary" style="margin-top:0.5rem;justify-content:center;">Skicka meddelande →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2025 Nordic Car Partner. Alla rättigheter förbehållna.</div>
+  <ul class="footer-links">
+    <li><a href="#">Integritetspolicy</a></li>
+    <li><a href="#">Villkor</a></li>
+    <li><a href="#">Cookie-inställningar</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Intersection observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.animate-up').forEach(el => observer.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
