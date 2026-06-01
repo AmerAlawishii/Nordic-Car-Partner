@@ -1016,11 +1016,10 @@
     // Parametrar som matchar dina EmailJS-mallvariabler
     // OBS: Namnge variablerna exakt som i din EmailJS-mall
     const params = {
-      from_name  : fornamn + ' ' + efternamn,
+      name  : fornamn + ' ' + efternamn,
       fornamn    : fornamn,
       efternamn  : efternamn,
       epost      : epost,
-      telefon    : telefon || 'Ej angivet',
       arende     : arende  || 'Ej angivet',
       meddelande : meddelande || 'Inget meddelande'
     };
